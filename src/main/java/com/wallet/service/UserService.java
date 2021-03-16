@@ -29,19 +29,21 @@ public class UserService {
     @POST
     @Produces(MediaType.APPLICATION_JSON)
     public User createUser(User user){
+        if(user.getId() == null) throw new IllegalArgumentException("Нет поля ID у пользователя");
         return userDao.createUser(user);
     }
 
-    @PUT
-    @Produces(MediaType.APPLICATION_JSON)
-    public User updateUser(User user){
-        return userDao.updateUser(user);
-    }
-
-    @DELETE
-    @Path("/{userId}")
-    @Produces(MediaType.APPLICATION_JSON)
-    public void deleteUser(@PathParam("userId") Long userId){
-        userDao.deleteUserById(userId);
-    }
+    //Раскомментировать как только сделаете методы в userDao
+//    @PUT
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public User updateUser(User user){
+//        return userDao.updateUser(user);
+//    }
+//
+//    @DELETE
+//    @Path("/{userId}")
+//    @Produces(MediaType.APPLICATION_JSON)
+//    public void deleteUser(@PathParam("userId") Long userId){
+//        userDao.deleteUserById(userId);
+//    }
 }
